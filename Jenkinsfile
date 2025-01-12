@@ -1,19 +1,22 @@
-pipeline
-{
-        agent any 
+pipeline{
+    
+    agent any
+    
+    stages{
         
-        environment
-        {
-            name="Pushpinder Singh"
-        }
-        
-        
-        stages
-        {
-            stage("local variable")
-            {
-                steps{echo "${env.name}"}
+        stage('Try catch'){
+            steps{
+                
+                script{
+                    
+                    try{
+                        sh 'exit 1'
+                    }
+                    
+                    catch(Exception e){
+                        echo 'error happens'
+                    }
+                }
             }
         }
-    
-}
+    }
